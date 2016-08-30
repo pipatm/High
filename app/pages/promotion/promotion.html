@@ -1,11 +1,13 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Promotion
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<div class="promotion">
 
-<ion-content class="promotion">
+  <ion-card *ngFor="let item of items" (click)="presentDetail(item)" >
+    <img src={{item.img}}/>
+    <ion-card-content>
+      <ion-card-title>
+        <!--<img src="build/img/Coin.png" height="16px" width="16px">--> 
+        {{item.shortdetail}} >
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
 
-</ion-content>
+</div>

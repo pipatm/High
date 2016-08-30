@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
-
+import { Network } from 'ionic-native';
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
-export class MyApp {
+export class MyApp implements OnInit{
 
   private rootPage: any;
 
@@ -19,6 +19,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
     });
+  }
+  ngOnInit(){
+    let network = Network.connection;
+    if(network === 'none'){
+      alert("Please Connect to the Internet");
+    }
   }
 }
 

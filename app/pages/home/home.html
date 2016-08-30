@@ -1,9 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar primary>
+    <ion-title> 
+      <img class="imgTitle" src="build/img/Logo.png">
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="home">
-  <h2>Welcome to Esso Smileeeee!!!</h2>
+<ion-content class="home" padding>
+  <img src="build/img/Login.jpg" *ngIf="isLogin">
+  <points *ngIf="! isLogin"> </points>
+  <promotion></promotion>
 </ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title> 
+      <img class="imgTitle" src="build/img/Logo.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="promotion-detail" padding>
+  <!--banner-->
+  <img src={{imgban}}>
+  <!--point-->
+  <div class="point-zone">
+    <ion-grid>
+
+      <ion-row center>
+        <ion-col width-10></ion-col>
+        <ion-col width-33>
+          <img src={{essoLogo}}>
+        </ion-col>
+        <ion-col width-10></ion-col>
+        <ion-col width-33>
+          <img src={{otherLogo}}>
+        </ion-col>
+        <ion-col width-10></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col width-10></ion-col>
+        <ion-col width-33 class="text-center">
+          <div class="point">{{essoPoint}}</div>
+          <div class="point-detail"> Smile Points</div>
+        </ion-col>
+        <ion-col width-10>
+          <img src="">
+        </ion-col>
+        <ion-col width-33 class="text-center">
+          <div class="point">{{otherPoint}}</div>
+          <div class="point-detail"> Other Point</div>
+        </ion-col>
+        <ion-col width-10></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+  <!--detail-->
+  <div>
+    {{detail}}
+  </div>
+</ion-content>
