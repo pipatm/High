@@ -1,14 +1,14 @@
-# High Project
+## High Project
 
-#install module
+###install node module
 ```bash
 npm install
 ```
-#preapare codova plugin
+###preapare codova plugin
 ```bash
 cordova prepare or ionic prepare
 ```
-#run on android
+###run on android
 ```bash
 $ ionic run android
 ```
