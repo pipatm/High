@@ -1,4 +1,4 @@
-# High
+# High Project
 
 #install module
 ```bash
@@ -13,6 +13,7 @@ cordova prepare or ionic prepare
 $ ionic run android
 ```
 -- it will run at emulator if doesn't connect device.
+
 -- or type ionic emulate android.
 
 or
