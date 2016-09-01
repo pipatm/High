@@ -1,5 +1,10 @@
 <div class="promotion">
 
+  <div *ngIf="!isLogin">
+  	<div *ngFor="let login of login" (click)="gotoLogin()">
+    		<img src={{login.img}}/>
+  	</div>
+  </div>
   <ion-card *ngFor="let item of items" (click)="presentDetail(item)" >
     <img src={{item.img}}/>
     <ion-card-content>
