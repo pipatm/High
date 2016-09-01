@@ -1,7 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Geolocation, GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
-import { Diagnostic } from 'ionic-native'; 
+import { Diagnostic } from 'ionic-native';
+import { InAppBrowser, InAppBrowserEvent} from 'ionic-native'; 
 
 @Component({
   templateUrl: 'build/pages/findstation/findstation.html'
@@ -86,13 +87,36 @@ export class FindStationPage implements OnInit{
     GoogleMap.isAvailable().then( () => {
       map.on(GoogleMapsEvent.MAP_READY).subscribe( () => {
         console.log('map event ready');
-        map.setCenter(new GoogleMapsLatLng(lat,lng));
         map.setVisible(true);
         map.setZoom(15);
+        map.setCenter(new GoogleMapsLatLng(lat,lng));
+        map.addMarker({
+          'position' : new GoogleMapsLatLng(lat,lng),
+          'title': 'your location'
+        });
       });
     });
   }
-
+  /**
+   * 
+   **/
+  externalMap(): void{
+    //InAppBrowser.open('comgooglemaps://?saddr=' + lat + ',' + lng + '&daddr=' + lat + ',' + lng + '&directionmode=driving', '_system');
+    if(Geolocation){
+        this.getLocation().then( (latlng) => {
+            console.log('Geolocation ready');
+            this.isGeo = true;
+            let lat = latlng.getLat()+1;
+            let lng = latlng.getLng()+1;
+            InAppBrowser.open('google.navigation:q=' + lat + ',' + lng + '&mode=d', '_system');
+        }).catch( (e) => {
+          console.log(e);
+        });
+      }
+      else{
+        console.log('no geoing');
+      }
+  }
 }
 
 class LatLng{

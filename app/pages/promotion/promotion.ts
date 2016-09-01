@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { PromotionDetailPage } from '../promotion-detail/promotion-detail';
 
 @Component({
@@ -9,6 +9,7 @@ import { PromotionDetailPage } from '../promotion-detail/promotion-detail';
 export class PromotionPage {
   item: Array<string>;
   items: Array<{'img': string, 'shortdetail': string,'essologo': string,'otherlogo': string, 'detail': string}>;
+
   constructor(private navCtrl: NavController) {
     this.items = [];
     this.items.push({'img':'build/img/Tesco.jpg','shortdetail':'Tesco Points','essologo': 'build/img/Logo.png', 'otherlogo': 'build/img/smalltesco.png','detail': 'Conversely, 10,000 Tesco-Lotus Club Card Points can also be converted to 500 Esso Smiles Driver Rewards Points.'});
