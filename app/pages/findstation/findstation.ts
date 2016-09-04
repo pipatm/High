@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 import { Geolocation, GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 import { Diagnostic } from 'ionic-native';
 import { InAppBrowser, InAppBrowserEvent} from 'ionic-native'; 
@@ -11,9 +12,13 @@ export class FindStationPage implements OnInit{
   
   private isGeo = false;
 
-  constructor(private navCtrl: NavController,private platform: Platform) {
+  constructor(private navCtrl: NavController,private platform: Platform, public loadingCtrl: LoadingController) {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
     this.platform.ready().then( ()=> {
       console.log('platform ready');
+      loader.present();
       if(Geolocation){
         this.getLocation().then( (latlng) => {
             console.log('Geolocation ready');
@@ -22,9 +27,11 @@ export class FindStationPage implements OnInit{
             let lng = latlng.getLng();
             this.initMap('map').then( (map) => {
               this.drawMap(map,lat,lng);
+              loader.dismiss();
             });
         }).catch( (e) => {
           console.log(e);
+          loader.dismiss();
         });
       }
       else{
@@ -33,21 +40,18 @@ export class FindStationPage implements OnInit{
     });
   }
   ngOnInit(){
-    console.log('OnInit ready');
     Diagnostic.isGpsLocationEnabled().then( (available) => {
-      console.log("1:aviil = " + available);
       if(!available){
         Diagnostic.isNetworkLocationEnabled().then( (available) => {
-          console.log("2: avail = " + available);
           if(!available){
             alert("Pleasse enable Location Setting");
           }
         }).catch( (e) => {
-          console.log("2: e = " + e);
+          console.log(e);
         });
       }
     }).catch( (e) => {
-      console.log("1: e = " + e);
+      console.log(e);
     });
   }
   /*
