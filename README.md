@@ -2,11 +2,7 @@
 
 ###install node module
 ```bash
-npm install
-```
-###preapare codova plugin
-```bash
-cordova prepare or ionic prepare
+$ npm install
 ```
 ###run on android
 ```bash
