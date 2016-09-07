@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title> 
+      <img class="imgTitle" src="build/img/Logo.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <h1>Register</h1>
+
+    <form [formGroup]='registform2' (ngSubmit)="onSubmit(registform2)" novalidate>
+    	<ion-item>
+		  <ion-label primary stacked>Title <span danger>*</span></ion-label>
+          <ion-input type="text" formControlName="title" name="title"></ion-input>
+ 	    </ion-item>
+    	<ion-item>
+		      <ion-label primary stacked>Firstname <span danger>*</span></ion-label>
+          <ion-input type="text" formControlName="firstName" name="firstName"></ion-input>
+ 	    </ion-item>
+
+    	<ion-item>
+		      <ion-label primary stacked>Lastname <span danger>*</span></ion-label>
+          <ion-input type="text" formControlName="lastName" name="lastName"></ion-input>
+ 	    </ion-item>
+
+    	<ion-item>
+		      <ion-label primary stacked>Mobile Phone <span danger>*</span></ion-label>
+          <ion-input type="number" formControlName="phone" name="phone"></ion-input>
+ 	    </ion-item>
+		
+
+		<button block [disabled]="!registform2.controls.title.valid || !registform2.controls.firstName.valid || !registform2.controls.lastName.valid || !registform2.controls.phone.valid" type="submit"> Create Account </button>
+    </form>
+
+
+</ion-content>
