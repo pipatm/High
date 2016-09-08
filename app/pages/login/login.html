@@ -8,23 +8,24 @@
 
 
 <ion-content padding>
-<ion-list>
   <h1>Log in</h1>
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input [(ngModel)]="cardnumber" type="text" value=""></ion-input>
-  </ion-item>
+  <form [formGroup]="loginform" (ngSubmit)="onSubmit(loginform)">
+      <ion-item>
+        <ion-label floating>Card Number</ion-label>
+        <ion-input formControlName="sUsername" name="sUsername" type="number" value=""></ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input [(ngModel)]="password"  type="password" value=""></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="sPassword" name="sPassword" type="password" value=""></ion-input>
+      </ion-item>
 
-</ion-list>
 
-<div padding>
-  <button primary block  (click)="login()">Sign In</button>
-</div>
+    <div padding>
+      <button primary block type="submit">Sign In</button>
+    </div>
+  </form>
+  
 <div class="text-center">
   <a [navPush]='toRegister'>Sign up</a>
 </div>
