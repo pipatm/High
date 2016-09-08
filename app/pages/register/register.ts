@@ -1,19 +1,37 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-/*
-  Generated class for the RegisterPage page.
+import {Directive} from 'ionic2-input-mask';
+import { Register2Page } from '../register-2/register-2';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/register/register.html',
+  directives: [Directive]
 })
 export class RegisterPage {
 
-  constructor(private navCtrl: NavController) {
+  registform1: FormGroup;
+  toRegister2 = Register2Page;
+  private myData: any;
+  
+  public mask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+  public mask2 = [/\d/, '-', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/,/\d/,/\d/,/\d/, '-', /\d/, /\d/, '-',/\d/];
 
+
+  constructor(private navCtrl: NavController, private formBuilder: FormBuilder) {
+      
+  		this.registform1 = formBuilder.group({
+        cardID: ['', Validators.required],
+        citizenID: ['', Validators.required],
+        email: ['', Validators.required]
+      });
   }
 
+  onSubmit(formData) {
+    if(formData.valid) {
+      console.log(formData.value);
+      this.myData = formData.value;
+    }
+  }
 }
