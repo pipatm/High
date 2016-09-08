@@ -11,28 +11,39 @@
     <h1>Register</h1>
 
     <form [formGroup]='registform2' (ngSubmit)="onSubmit(registform2)" novalidate>
+          <!--mock previous data-->
+          <ion-input [hidden]="true" type="text" formControlName="sCardNumber" name="sCardNumber" value="{{sCardNumber}}"></ion-input>
+          <ion-input [hidden]="true" type="text" formControlName="sCitizenID" name="sCitizenID" value="{{sCitizenID}}"></ion-input>
+          <ion-input [hidden]="true" type="text" formControlName="sEmail" name="sEmail" value="{{sEmail}}"></ion-input>
+
     	<ion-item>
-		  <ion-label primary stacked>Title <span danger>*</span></ion-label>
-          <ion-input type="text" formControlName="title" name="title"></ion-input>
- 	    </ion-item>
+		      <ion-label primary stacked>Title <span danger>*</span></ion-label>
+          <ion-select formControlName="sTitle" name="sTitle">
+              <ion-option value="Mr">Mr.</ion-option>
+              <ion-option value="Mrs">Mrs.</ion-option>
+              <ion-option value="Ms">Ms.</ion-option>
+          </ion-select>
+ 	        </ion-item>
     	<ion-item>
 		      <ion-label primary stacked>Firstname <span danger>*</span></ion-label>
-          <ion-input type="text" formControlName="firstName" name="firstName"></ion-input>
+          <ion-input type="text" pattern="[^\d]*" formControlName="sFirstName" name="sFirstName"></ion-input>
  	    </ion-item>
+      <p [hidden]="registform2.controls.sFirstName.untouched || registform2.controls.sFirstName.valid" danger padding-left>Invalid name.</p>
 
     	<ion-item>
 		      <ion-label primary stacked>Lastname <span danger>*</span></ion-label>
-          <ion-input type="text" formControlName="lastName" name="lastName"></ion-input>
+          <ion-input type="text" pattern="[^\d]*" formControlName="sLastName" name="sLastName"></ion-input>
  	    </ion-item>
+      <p [hidden]="registform2.controls.sLastName.untouched || registform2.controls.sLastName.valid" danger padding-left>Invalid name.</p>
 
     	<ion-item>
 		      <ion-label primary stacked>Mobile Phone <span danger>*</span></ion-label>
-          <ion-input type="number" formControlName="phone" name="phone"></ion-input>
+          <ion-input type="number" pattern="\+?\d+" formControlName="sMobilePhone" name="sMobilePhone"></ion-input>
  	    </ion-item>
+      <p [hidden]="registform2.controls.sMobilePhone.untouched || registform2.controls.sMobilePhone.valid" danger padding-left>Invalid phone number.</p>
 		
 
-		<button block [disabled]="!registform2.controls.title.valid || !registform2.controls.firstName.valid || !registform2.controls.lastName.valid || !registform2.controls.phone.valid" type="submit"> Create Account </button>
+		<button block [disabled]="!registform2.controls.sTitle.valid || !registform2.controls.sFirstName.valid || !registform2.controls.sLastName.valid || !registform2.controls.sMobilePhone.valid" type="submit"> Create Account </button>
     </form>
-
 
 </ion-content>
