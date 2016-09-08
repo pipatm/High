@@ -8,5 +8,44 @@
 
 
 <ion-content padding>
-<div>testregister</div>
+    <h1>Register</h1>
+
+    <form [formGroup]='registform1' (ngSubmit)="onSubmit(registform1)" novalidate>
+        <ion-item>
+		      <ion-label primary stacked><ion-icon ios="ios-card" md="md-card"></ion-icon>  Esso Smiles Card No. <span danger>*</span></ion-label>
+		      <ion-input type="number" pattern="\d{19}" formControlName="cardID" name="cardID" placeholder="19 digits"></ion-input>
+          <!-- <ion-input type="text" pattern="\d*" formControlName ="cardID" [textMask]="{mask: mask}" [(ngModel)]="cardIDModel" [ngModelOptions]="{standalone: true}"></ion-input> -->
+          
+      </ion-item>
+      <p [hidden]="registform1.controls.cardID.valid" danger padding-left>Please enter 19 characters.</p>
+
+       <ion-item>
+		      <ion-label primary stacked><ion-icon ios="ios-people" md="md-people"></ion-icon>  Citizen ID or Passport ID <span danger>*</span></ion-label>
+          <ion-input type="text" formControlName="citizenID" name="citizenID"></ion-input>
+ 	    </ion-item>
+
+      <ion-item>
+		      <ion-label primary stacked><ion-icon ios="ios-mail" md="md-mail"></ion-icon>  Email <span danger>*</span></ion-label>
+          <ion-input type="text" pattern=".+\@.+\..+" formControlName="email" name="email"></ion-input>
+  	   </ion-item>
+      <p [hidden]="registform1.controls.email.valid" danger padding-left>Please enter a valid email address.</p>
+
+  		<button block [disabled]="!registform1.controls.cardID.valid || !registform1.controls.citizenID.valid || !registform1.controls.email.valid" type="submit" [navPush]='toRegister2'> Next >> </button>
+    </form>
+    <!-- <h2>In realtime</h2> Form is valid?: <strong>{{ registform1.valid }}</strong>
+    <p>
+        {{ registform1.value | json }}
+    </p>
+    <div *ngIf="myData">
+        <h2>Submitted</h2>
+        <p>
+            {{ myData | json }}
+        </p>
+        <h5>Consider this a more of 3-step validation.</h5>
+        <ul>
+            <li>First, we validate in the template by disabling submit button.</li>
+            <li>Next we display error messages in realtime</li>
+            <li>Third, we verify if form is valid before submission happens in controller</li>
+        </ul>
+    </div> -->
 </ion-content>

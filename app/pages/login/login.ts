@@ -7,7 +7,8 @@ import { RegisterPage } from '../register/register';
   templateUrl: 'build/pages/login/login.html',
 })
 export class LoginPage {
-	register = RegisterPage;
+
+	toRegister = RegisterPage;
   constructor(private navCtrl: NavController) {
 
   }
