@@ -7,6 +7,30 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <ion-toolbar danger>
+        <ion-title>Welcome, Pipat</ion-title>
+    </ion-toolbar>
+    
+    <img src="build/img/AirAsia.jpg"/>
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>Name</ion-label>
+            <ion-input type="text" value={{profile.name}}></ion-input>
+        </ion-item>
 
+        <ion-item>
+            <ion-label stacked>Mobile phone</ion-label>
+            <ion-input type="tel" value={{profile.tel}}></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input type="email" value={{profile.email}}></ion-input>
+        </ion-item>
+
+    </ion-list>
+    <ion-item-group padding>
+        <button type="submit" class="custom-button" [disabled]="true" block>Update My Profile</button>
+    </ion-item-group>
 </ion-content>
