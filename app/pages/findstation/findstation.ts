@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Geolocation, GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 import { Diagnostic } from 'ionic-native';
@@ -12,32 +12,34 @@ export class FindStationPage implements OnInit{
   
   private isGeo = false;
 
-  constructor(private navCtrl: NavController,private platform: Platform, public loadingCtrl: LoadingController) {
+  constructor(private navCtrl: NavController, public loadingCtrl: LoadingController) {
+    this.init();
+  }
+  init(){
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: "Retriving Your Location..."
     });
-    this.platform.ready().then( ()=> {
-      console.log('platform ready');
+    if(Geolocation){
       loader.present();
-      if(Geolocation){
-        this.getLocation().then( (latlng) => {
-            console.log('Geolocation ready');
-            this.isGeo = true;
-            let lat = latlng.getLat();
-            let lng = latlng.getLng();
-            this.initMap('map').then( (map) => {
-              this.drawMap(map,lat,lng);
-              loader.dismiss();
-            });
-        }).catch( (e) => {
-          console.log(e);
-          loader.dismiss();
-        });
-      }
-      else{
-        console.log('no geoing');
-      }
-    });
+      this.getLocation().then( (latlng) => {
+          console.log('Geolocation ready');
+          this.isGeo = true;
+          let lat = latlng.getLat();
+          let lng = latlng.getLng();
+          this.initMap('map').then( (map) => {
+            this.drawMap(map,lat,lng);
+            loader.dismiss();
+          });
+      }).catch( (e) => {
+        console.log(e);
+        loader.dismiss();
+        alert('Can not retrived your location.');
+      });
+    }
+    else{
+      console.log('no geoing');
+      loader.dismiss();
+    }
   }
   ngOnInit(){
     Diagnostic.isGpsLocationEnabled().then( (available) => {
@@ -60,11 +62,10 @@ export class FindStationPage implements OnInit{
   */
   getLocation() : Promise<LatLng> {
     return new Promise( (resolve,reject) => {
-      Geolocation.getCurrentPosition({timeout: 60000,enableHighAccuracy:true}).then( (position) =>{
+      Geolocation.getCurrentPosition({timeout: 5000,enableHighAccuracy:true}).then( (position) =>{
         resolve(new LatLng(position.coords.latitude, position.coords.longitude));
-        reject('Geolocation Error');
-      }).catch( (e) =>{
-        console.log(e);
+      }).catch( (e) => {
+        resolve(e);
       });
     });
   }
@@ -102,7 +103,7 @@ export class FindStationPage implements OnInit{
     });
   }
   /**
-   * 
+   * Call Native google map app 
    **/
   externalMap(): void{
     //InAppBrowser.open('comgooglemaps://?saddr=' + lat + ',' + lng + '&daddr=' + lat + ',' + lng + '&directionmode=driving', '_system');
@@ -115,6 +116,7 @@ export class FindStationPage implements OnInit{
             InAppBrowser.open('google.navigation:q=' + lat + ',' + lng + '&mode=d', '_system');
         }).catch( (e) => {
           console.log(e);
+          alert('Can not retrived your location.');
         });
       }
       else{
