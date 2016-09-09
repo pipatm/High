@@ -8,29 +8,65 @@
 
 
 <ion-content>
-    <ion-toolbar danger>
-        <ion-title>Welcome, Pipat</ion-title>
+    <ion-toolbar>
+        <ion-title>Your Profile</ion-title>
     </ion-toolbar>
+    <div padding>
+        <div class="name">{{profile.name}}</div>
+        <div class="sub-detail">
+            <div>{{profile.email}}</div>
+            <div>{{profile.cardID}}</div>
+        </div>
+        <div class="container">
+            <div class="tier">
+                <span>{{profile.tier}}</span> member
+            </div>
+            <div class="point-container">
+                <span>{{profile.points}}</span> points
+            </div>
+        </div>
+        <ion-list class="mobile-container">
+            <ion-item>
+                <h3 item-left>Mobile #</h3>
+                <p item-right>{{profile.tel}}</p>
+            </ion-item>
+        </ion-list>
+    </div>
     
-    <img src="build/img/AirAsia.jpg"/>
     <ion-list>
+        <ion-list-header>Preference</ion-list-header>
         <ion-item>
-            <ion-label stacked>Name</ion-label>
-            <ion-input type="text" value={{profile.name}}></ion-input>
+            <ion-label>Car Type</ion-label>
+            <ion-select [(ngModel)]="carType">
+                <ion-option value="nes">NES</ion-option>
+                <ion-option value="n64">Nintendo64</ion-option>
+                <ion-option value="ps">PlayStation</ion-option>
+                <ion-option value="genesis">Sega Genesis</ion-option>
+                <ion-option value="saturn">Sega Saturn</ion-option>
+                <ion-option value="snes">SNES</ion-option>
+            </ion-select>
         </ion-item>
-
         <ion-item>
-            <ion-label stacked>Mobile phone</ion-label>
-            <ion-input type="tel" value={{profile.tel}}></ion-input>
+            <ion-label>Fuel Type</ion-label>
+            <ion-select [(ngModel)]="fuelType">
+                <ion-option value="nes">NES</ion-option>
+                <ion-option value="n64">Nintendo64</ion-option>
+                <ion-option value="ps">PlayStation</ion-option>
+                <ion-option value="genesis">Sega Genesis</ion-option>
+                <ion-option value="saturn">Sega Saturn</ion-option>
+                <ion-option value="snes">SNES</ion-option>
+            </ion-select>
         </ion-item>
-
         <ion-item>
-            <ion-label stacked>Email</ion-label>
-            <ion-input type="email" value={{profile.email}}></ion-input>
+            <ion-label>Mileage Per Month (in km)</ion-label>
+            <ion-select [(ngModel)]="mileage">
+                <ion-option value="nes">NES</ion-option>
+                <ion-option value="n64">Nintendo64</ion-option>
+                <ion-option value="ps">PlayStation</ion-option>
+                <ion-option value="genesis">Sega Genesis</ion-option>
+                <ion-option value="saturn">Sega Saturn</ion-option>
+                <ion-option value="snes">SNES</ion-option>
+            </ion-select>
         </ion-item>
-
     </ion-list>
-    <ion-item-group padding>
-        <button type="submit" class="custom-button" [disabled]="true" block>Update My Profile</button>
-    </ion-item-group>
 </ion-content>
