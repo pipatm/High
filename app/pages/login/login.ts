@@ -42,7 +42,7 @@ export class LoginPage {
 			subTitle: 'Incorrect Username or Password',
 			buttons: ['OK']
 		});
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'text/json' });
     let options = new RequestOptions({ headers: headers });
 
     	if(formData.valid) {
