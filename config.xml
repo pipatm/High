@@ -46,5 +46,6 @@
     <plugin name="cordova-plugin-network-information" spec="https://github.com/apache/cordova-plugin-network-information" />
     <plugin name="cordova.plugins.diagnostic" spec="https://github.com/dpa99c/cordova-diagnostic-plugin" />
     <plugin name="cordova-plugin-inappbrowser" spec="https://github.com/apache/cordova-plugin-inappbrowser" />
+    <plugin name="onesignal-cordova-plugin" spec="https://github.com/OneSignal/OneSignal-Cordova-SDK" />
 
 </widget>

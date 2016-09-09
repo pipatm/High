@@ -1,18 +1,15 @@
 <div class="promotion">
-
-  <div *ngIf="!isLogin">
-  	<div *ngFor="let login of login" (click)="gotoLogin()">
-    		<img src={{login.img}}/>
-  	</div>
-  </div>
-  <ion-card *ngFor="let item of items" (click)="presentDetail(item)" >
-    <img src={{item.img}}/>
-    <ion-card-content>
-      <ion-card-title>
-        <!--<img src="build/img/Coin.png" height="16px" width="16px">--> 
-        {{item.shortdetail}} <ion-icon name="arrow-dropright-circle"> </ion-icon>
-      </ion-card-title>
-    </ion-card-content>
-  </ion-card>
-
+  <ion-slides #mySlider [options]="mySlideOptions">
+    <ion-slide *ngFor="let item of items">
+      <ion-card (click)="presentDetail(item)" >
+        <img src={{item.img}}/>
+        <ion-card-content>
+          <ion-card-title>
+            <!--<img src="build/img/Coin.png" height="16px" width="16px">--> 
+            {{item.shortdetail}} <ion-icon name="arrow-dropright-circle"> </ion-icon>
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 </div>
