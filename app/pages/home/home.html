@@ -8,6 +8,6 @@
 
 <ion-content class="home" padding>
   <img src="build/img/Login.jpg" *ngIf="!isLogin" (click)="gotoLogin()">
-  <points *ngIf="isLogin"> </points>
+  <points *ngIf="!isLogin"> </points>
   <promotion></promotion>
 </ion-content>
